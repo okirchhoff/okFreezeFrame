@@ -1,14 +1,41 @@
 # create_frozen_camera_view.py
 #
-# Original concept and initial code by the user.
+# A powerful utility for Autodesk Maya that instantly creates a static, floating 
+# viewport from any camera's current perspective.
+# This script is an essential workflow enhancement for anyone doing match-moving, 
+# set modeling to plates, or complex scene layout. It solves the common problem of 
+# needing to reference a camera's view from one frame while working on another.
+# 
+# Original MEL by Oliver Kirchhoff (kirchhoff.oliver@gmail.com)
+# IMDB: http://www.imdb.com/name/nm0456285/ 
+# 
 # Refactoring and debugging by Google's Gemini.
-# Final, correct logic for image plane freezing by the user.
+# Final, correct logic for image plane freezing by Oliver Kirchhoff.
 #
 # v2.0.0 (25/07/2025):
 #   - FINAL WORKING VERSION: The user correctly identified that freezing an image
 #     sequence requires disconnecting 'time1.outTime' from the image plane's
 #     '.frameExtension' attribute before setting the frame value.
 #     This is the robust, correct solution.
+####################################################################################
+############ Copy this to your hotkey-press event: (Python)
+'''
+import sys
+
+if 'okFreezeFrame' not in sys.modules:
+    script_path = "F:/GitHub/okpushy" # Adjust this path as needed
+    if script_path not in sys.path:
+        sys.path.append(script_path)
+
+import okFreezeFrame
+print("okFreezeFrame sourced!")
+
+importlib.reload(okFreezeFrame)
+okFreezeFrame.create_frozen_camera_view()
+'''
+####################################################################################
+
+
 
 import maya.cmds as cmds
 
